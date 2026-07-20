@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Educational Course Portal</title>
+  <style>
+    /* Internal CSS: background and text colors */
+    body {
+      background-color: #f0f7ff; /* light blue background */
+      color: #102a43; /* dark navy text */
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+    }
+    header, nav, main, footer, section, aside {
+      margin-bottom: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(16,42,67,0.08);
+    }
+    nav a { color: #034078; text-decoration: none; margin-right: 12px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { border: 1px solid #dae8ff; padding: 8px; text-align: left; }
+    th { background: #e6f0ff; }
+    img.course-thumb { max-width: 100%; height: auto; display: block; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header Module -->
+    <header>
+      <h1>Educational Course Portal</h1>
+      <p>Welcome to your one-stop portal for online courses, learning paths, and resources.</p>
+    </header>
+
+    <!-- Navigation Module -->
+    <nav>
+      <a href="#courses">Courses</a> <!-- Internal link to section -->
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="https://www.example.com" target="_blank" rel="noopener">External Resources</a> <!-- External link -->
+      <a href="#top">Back to Top</a> <!-- Bookmark link (to top) -->
+    </nav>
+
+    <!-- Main Content Module -->
+    <main>
+      <!-- Courses Section -->
+      <section id="courses">
+        <h2>Featured Courses</h2>
+        <p>Explore our curated selection of courses across technology, design, and business.</p>
+
+        <!-- Clickable image link -->
+        <a href="#course-details">
+          <img src="data:image/jpeg;base64,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" alt="Banner: Learn with Us" class="course-thumb">
+        </a>
+
+        <!-- Course table -->
+        <table>
+          <caption>Course Catalog</caption>
+          <thead>
+            <tr>
+              <th>Course ID</th>
+              <th>Title</th>
+              <th>Instructor</th>
+              <th>Duration</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>EDU101</td>
+              <td><a href="#course-details">Intro to Web Development</a></td>
+              <td>Jane Smith</td>
+              <td>8 weeks</td>
+            </tr>
+            <tr>
+              <td>EDU201</td>
+              <td>Data Fundamentals</td>
+              <td>Ali Khan</td>
+              <td>6 weeks</td>
+            </tr>
+            <tr>
+              <td>EDU301</td>
+              <td>UX Design Basics</td>
+              <td>Maria Lopez</td>
+              <td>5 weeks</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Description list -->
+        <dl>
+          <dt>Accredited</dt>
+          <dd>All courses include a certificate of completion recognized by partner institutions.</dd>
+          <dt>Support</dt>
+          <dd>24/7 learner support including forums, chat, and scheduled office hours.</dd>
+        </dl>
+
+      </section>
+
+      <!-- Course Details Module -->
+      <section id="course-details">
+        <h2>Course Details</h2>
+        <p>This section provides sample details for the <strong>Intro to Web Development</strong> course.</p>
+
+        <!-- Ordered nested list -->
+        <ol>
+          <li>Module 1: HTML Basics
+            <ol>
+              <li>Elements and Structure</li>
+              <li>Semantic Tags</li>
+            </ol>
+          </li>
+          <li>Module 2: CSS Styling
+            <ol>
+              <li>Selectors and Specificity</li>
+              <li>Layouts and Responsive Design</li>
+            </ol>
+          </li>
+        </ol>
+
+        <!-- Unordered nested list -->
+        <ul>
+          <li>Assignments
+            <ul>
+              <li>Weekly quizzes</li>
+              <li>Final project</li>
+            </ul>
+          </li>
+          <li>Resources
+            <ul>
+              <li>Reading materials</li>
+              <li>Video lectures</li>
+            </ul>
+          </li>
+        </ul>
+
+      </section>
+
+      <!-- About Module -->
+      <section id="about">
+        <h2>About This Portal</h2>
+        <p>The Educational Course Portal is designed to help learners discover structured learning paths and skill-based courses.</p>
+        <p>We partner with industry experts to ensure practical, up-to-date content.</p>
+      </section>
+
+      <!-- Contact Module -->
+      <section id="contact">
+        <h2>Contact & Support</h2>
+        <p>Reach out to our team for admissions, partnerships, or support.</p>
+        <p>Email: <a href="mailto:support@eduportal.example.com">support@eduportal.example.com</a></p> <!-- Email link -->
+        <p>Phone: <a href="tel:+1234567890">+1 (234) 567-890</a></p> <!-- Phone link -->
+      </section>
+
+    </main>
+
+    <!-- Sidebar Module -->
+    <aside>
+      <h3>Quick Links</h3>
+      <div>
+        <p>Jump to:</p>
+        <ul>
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#course-details">Course Details</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Footer Module -->
+    <footer>
+      <p>&copy; 2026 Educational Course Portal</p>
+      <p id="top">Return to top using the bookmark link above.</p>
+    </footer>
+
+  </div>
+</body>
+</html>
