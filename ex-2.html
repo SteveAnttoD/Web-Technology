@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduWiki — Course Portal</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Linux Libertine','Georgia',serif; background: #f6f6f6; color: #202122; line-height: 1.6; }
+    a { color: #0645ad; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Wikipedia-style banner */
+    .site-banner { background: #fff; border-bottom: 1px solid #a7d7f9; padding: 8px 20px; display: flex; align-items: center; gap: 12px; }
+    .site-banner h1 { font-size: 1.4rem; font-weight: normal; }
+    .site-banner .logo { width: 45px; height: 45px; border-radius: 50%; background: #36c; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.3rem; }
+
+    /* Tabs */
+    .tabs { background: #fff; border-bottom: 1px solid #a7d7f9; padding: 0 20px; display: flex; gap: 0; }
+    .tabs a { padding: 8px 14px; font-size: .9rem; border: 1px solid transparent; border-bottom: none; position: relative; top: 1px; }
+    .tabs a.active { background: #fff; border-color: #a7d7f9; border-bottom: 1px solid #fff; font-weight: bold; }
+
+    /* Layout */
+    .wrapper { max-width: 980px; margin: 0 auto; display: flex; gap: 0; }
+    .sidebar { width: 180px; background: #f8f9fa; border-right: 1px solid #c8ccd1; padding: 14px 10px; font-size: .85rem; flex-shrink: 0; }
+    .sidebar h3 { font-size: .9rem; margin: 10px 0 4px; border-bottom: 1px solid #c8ccd1; padding-bottom: 2px; }
+    .sidebar ul { list-style: none; }
+    .sidebar li { padding: 2px 0; }
+    .content { flex: 1; background: #fff; border-left: none; padding: 20px 24px; }
+
+    /* Headings */
+    .content h1 { font-size: 1.8rem; font-weight: normal; border-bottom: 1px solid #a2a9b1; margin-bottom: 10px; }
+    .content h2 { font-size: 1.3rem; font-weight: normal; border-bottom: 1px solid #a2a9b1; margin: 20px 0 8px; }
+    .content h3 { font-size: 1.1rem; margin: 14px 0 6px; }
+    .content p { margin: 6px 0; }
+
+    /* Info box */
+    .infobox { float: right; width: 260px; border: 1px solid #a2a9b1; background: #f8f9fa; margin: 0 0 14px 20px; font-size: .85rem; border-spacing: 0; }
+    .infobox caption { background: #36c; color: #fff; padding: 6px; font-weight: bold; font-size: .95rem; caption-side: top; }
+    .infobox td, .infobox th { padding: 4px 8px; border-bottom: 1px solid #ddd; text-align: left; }
+    .infobox th { background: #eaecf0; width: 90px; }
+
+    /* TOC */
+    .toc { background: #f8f9fa; border: 1px solid #a2a9b1; padding: 10px 14px; display: inline-block; margin: 10px 0; font-size: .9rem; }
+    .toc h4 { margin-bottom: 4px; }
+    .toc ol { padding-left: 20px; }
+    .toc li { padding: 1px 0; }
+
+    /* Code / example boxes */
+    .code-example { background: #f8f9fa; border: 1px solid #c8ccd1; padding: 10px 14px; margin: 8px 0; font-family: monospace; font-size: .85rem; white-space: pre-wrap; overflow-x: auto; }
+
+    /* Form styles */
+    fieldset { border: 1px solid #a2a9b1; padding: 14px; margin: 10px 0; background: #f8f9fa; }
+    legend { font-weight: bold; padding: 0 6px; }
+    label { display: inline-block; min-width: 130px; margin: 4px 0; font-size: .95rem; }
+    input, select, textarea { font-family: inherit; font-size: .9rem; padding: 4px 6px; border: 1px solid #a2a9b1; border-radius: 2px; margin: 3px 0; }
+    input[type="text"], input[type="email"], input[type="password"], input[type="tel"],
+    input[type="url"], input[type="search"], input[type="number"], input[type="date"],
+    input[type="datetime-local"], input[type="month"], input[type="week"], input[type="time"] { width: 220px; }
+    textarea { width: 100%; max-width: 450px; }
+    input[type="range"] { width: 200px; vertical-align: middle; }
+    input[type="submit"], input[type="reset"], input[type="button"], button {
+      background: #36c; color: #fff; border: 1px solid #2a4b8d; padding: 6px 16px; border-radius: 2px; cursor: pointer; font-size: .9rem;
+    }
+    input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover, button:hover { background: #2a4b8d; }
+
+    /* Media section */
+    .media-box { background: #f8f9fa; border: 1px solid #c8ccd1; padding: 14px; margin: 10px 0; text-align: center; }
+    video, audio { max-width: 100%; margin: 6px 0; }
+
+    /* Footer */
+    .site-footer { background: #f8f9fa; border-top: 1px solid #a7d7f9; text-align: center; padding: 12px; font-size: .8rem; color: #54595d; margin-top: 20px; }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .wrapper { flex-direction: column; }
+      .sidebar { width: 100%; border-right: none; border-bottom: 1px solid #c8ccd1; }
+      .infobox { float: none; width: 100%; margin: 10px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Banner -->
+<div class="site-banner">
+  <div class="logo">E</div>
+  <h1>EduWiki &mdash; The Free Education Course Portal</h1>
+</div>
+
+<!-- Tabs -->
+<div class="tabs">
+  <a href="#" class="active">Article</a>
+  <a href="#">Talk</a>
+  <a href="#">Enroll</a>
+  <a href="#">History</a>
+</div>
+
+<div class="wrapper">
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <h3>Navigation</h3>
+    <ul>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#enrollment">Enrollment Form</a></li>
+      <li><a href="#input-types">Input Types</a></li>
+      <li><a href="#textarea-sec">Textarea</a></li>
+      <li><a href="#select-sec">Select &amp; Option</a></li>
+      <li><a href="#fieldset-sec">Fieldset &amp; Legend</a></li>
+      <li><a href="#media-sec">Media Elements</a></li>
+    </ul>
+    <h3>Related Topics</h3>
+    <ul>
+      <li><a href="ex-1.html">Ex-1: HTML Basics</a></li>
+      <li><a href="#">CSS Styling</a></li>
+      <li><a href="#">JavaScript</a></li>
+    </ul>
+    <h3>Tools</h3>
+    <ul>
+      <li><a href="#">What links here</a></li>
+      <li><a href="#">Printable version</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="content">
+    <h1 id="overview">HTML Forms &amp; Media Elements</h1>
+
+    <!-- Info box -->
+    <table class="infobox">
+      <caption>Quick Facts</caption>
+      <tr><th>Topic</th><td>HTML Forms</td></tr>
+      <tr><th>Level</th><td>Beginner</td></tr>
+      <tr><th>Duration</th><td>2 Hours</td></tr>
+      <tr><th>Prerequisites</th><td>Ex-1: HTML Basics</td></tr>
+      <tr><th>Standards</th><td>HTML5 / W3C</td></tr>
+    </table>
+
+    <p><b>HTML Forms</b> are the primary mechanism for collecting user input on the web. All forms begin with the <code>&lt;form&gt;</code> tag and end with <code>&lt;/form&gt;</code>. The form tag has two main attributes: <b>METHOD</b> (how data is sent) and <b>ACTION</b> (where data is sent).</p>
+
+    <div class="code-example">&lt;form action="/action_page.php" method="get"&gt;
+  ...form elements...
+&lt;/form&gt;</div>
+
+    <p>A <code>&lt;form&gt;</code> element can contain: <code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>, <code>&lt;button&gt;</code>, <code>&lt;select&gt;</code>, <code>&lt;option&gt;</code>, <code>&lt;fieldset&gt;</code>, and <code>&lt;label&gt;</code>.</p>
+
+    <!-- TOC -->
+    <div class="toc">
+      <h4>Contents</h4>
+      <ol>
+        <li><a href="#enrollment">Enrollment Form (Live Demo)</a></li>
+        <li><a href="#input-types">All Input Types</a></li>
+        <li><a href="#textarea-sec">Textarea</a></li>
+        <li><a href="#select-sec">Select &amp; Option</a></li>
+        <li><a href="#fieldset-sec">Fieldset &amp; Legend</a></li>
+        <li><a href="#media-sec">Media Elements</a></li>
+      </ol>
+    </div>
+
+    <!-- ===== 1. ENROLLMENT FORM ===== -->
+    <h2 id="enrollment">1. Enrollment Form (Live Demo)</h2>
+    <p>The following form demonstrates core form elements working together. Try filling it out:</p>
+
+    <form action="/action_page.php" method="get">
+      <fieldset>
+        <legend>Personal Information</legend>
+        <p><label for="fname">First Name:</label> <input type="text" id="fname" name="fname" placeholder="John"></p>
+        <p><label for="lname">Last Name:</label> <input type="text" id="lname" name="lname" placeholder="Doe"></p>
+        <p><label for="email">Email:</label> <input type="email" id="email" name="email" placeholder="you@example.com"></p>
+        <p><label for="dob">Date of Birth:</label> <input type="date" id="dob" name="dob"></p>
+        <p><label for="phone">Phone:</label> <input type="tel" id="phone" name="phone" placeholder="+1 234 567 890"></p>
+        <p><label for="pwd">Password:</label> <input type="password" id="pwd" name="pwd"></p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Course Preferences</legend>
+        <p>
+          <label for="course">Select Course:</label>
+          <select id="course" name="course">
+            <option value="webdev">Web Development</option>
+            <option value="datasci">Data Science</option>
+            <option value="ux">UX Design</option>
+            <option value="cyber">Cybersecurity</option>
+          </select>
+        </p>
+        <p>
+          <label>Mode:</label>
+          <input type="radio" id="online" name="mode" value="online" checked> <label for="online" style="min-width:auto">Online</label>
+          <input type="radio" id="campus" name="mode" value="campus"> <label for="campus" style="min-width:auto">On-Campus</label>
+        </p>
+        <p>
+          <label>Interests:</label>
+          <input type="checkbox" id="cert" name="cert" checked> <label for="cert" style="min-width:auto">Certificate</label>
+          <input type="checkbox" id="mentor" name="mentor"> <label for="mentor" style="min-width:auto">Mentorship</label>
+        </p>
+        <p><label for="exp">Experience (1-10):</label> <input type="range" id="exp" name="exp" min="1" max="10" value="5"></p>
+        <p><label for="bio">About You:</label><br>
+          <textarea id="bio" name="bio" rows="4" cols="50" placeholder="Tell us about yourself..."></textarea>
+        </p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Documents</legend>
+        <p><label for="resume">Upload Resume:</label> <input type="file" id="resume" name="resume"></p>
+        <p><label for="website">Website URL:</label> <input type="url" id="website" name="website" placeholder="https://"></p>
+      </fieldset>
+
+      <p style="margin-top:12px">
+        <input type="submit" value="Submit Enrollment">
+        <input type="reset" value="Reset Form">
+        <button type="button">Preview</button>
+      </p>
+      <input type="hidden" name="form_id" value="enroll_2026">
+    </form>
+
+    <!-- ===== 2. ALL INPUT TYPES ===== -->
+    <h2 id="input-types">2. All Input Types Reference</h2>
+    <p>The <code>&lt;input&gt;</code> tag specifies an input field where the user can enter data. Below is every HTML5 input type:</p>
+
+    <form action="/action_page.php" method="get">
+      <table style="width:100%; border-collapse:collapse; font-size:.9rem">
+        <thead>
+          <tr><th style="background:#eaecf0; padding:6px; border:1px solid #a2a9b1">Input Type</th>
+              <th style="background:#eaecf0; padding:6px; border:1px solid #a2a9b1">Live Example</th>
+              <th style="background:#eaecf0; padding:6px; border:1px solid #a2a9b1">Code</th></tr>
+        </thead>
+        <tbody>
+          <tr><td style="border:1px solid #ddd;padding:4px">text</td><td style="border:1px solid #ddd;padding:4px"><input type="text" name="t1" placeholder="Text"></td><td style="border:1px solid #ddd;padding:4px"><code>&lt;input type="text"&gt;</code></td></tr>
+          <tr><td style="border:1px solid #ddd;padding:4px">password</td><td style="border:1px solid #ddd;padding:4px"><input type="password" name="t2" placeholder="****"></td><td style="border:1px solid #ddd;padding:4px"><code>&lt;input type="password"&gt;</code></td></tr>
+          <tr><td style="border:1px solid #ddd;padding:4px">email</td><td style="border:1px solid #ddd;padding:4px"><input type="email" name="t3" placeholder="a@b.com"></td><td style="border:1px solid #ddd;padding:4px"><code>&lt;input type="email"&gt;</code></td></tr>
+          <tr><td style="border:1px solid #ddd;padding:4px">number</td><td style="border:1px solid #ddd;padding:4px"><input type="number" name="t4" min="0" max="100"></td><td style="border:1px solid #ddd;padding:4px"><code>&lt;input type="number"&gt;</code></td></tr>
+          <tr><td style="border:1px solid #ddd;padding:4px">date</td><td style="border:1px solid #ddd;padding:4px"><input type="date" name="t5"></td><td style="border:1px solid #ddd;padding:4px"><code>&lt;input type="date"&gt;</code></td></tr>
+          <tr><td style="border:1px solid #ddd;padding:4px">datetime-local</td><td style="border:1px solid #ddd;padding:4px"><input type="datetime-local" name="t6"></td><td style="border:1px solid #ddd;padding:4px"><code>&lt;input type="datetime-local"&gt;</code></td></tr>
+          <tr><td style="border:1px solid #ddd;padding:4px">month</td><td style="border:1px solid #ddd;padding:4px"><input type="month" name="t7"></td><td style="border:1px solid #ddd;padding:4px"><code>&lt;input type="month"&gt;</code></td></tr>
+          <tr><td style="border:1px solid #ddd;padding:4px">week</td><td style="border:1px solid #ddd;padding:4px"><input type="week" name="t8"></td><td style="border:1px solid #ddd;padding:4px"><code>&lt;input type="week"&gt;</code></td></tr>
+          <tr><td style="border:1px solid #ddd;padding:4px">time</td><td style="border:1px solid #ddd;padding:4px"><input type="time" name="t9"></td><td style="border:1px solid #ddd;padding:4px"><code>&lt;input type="time"&gt;</code></td></tr>
+          <tr><td style="border:1px solid #ddd;padding:4px">tel</td><td style="border:1px solid #ddd;padding:4px"><input type="tel" name="t10" placeholder="+1234567890"></td><td style="border:1px solid #ddd;padding:4px"><code>&lt;input type="tel"&gt;</code></td></tr>
+          <tr><td style="border:1px solid #ddd;padding:4px">url</td><td style="border:1px solid #ddd;padding:4px"><input type="url" name="t11" placeholder="https://"></td><td style="border:1px solid #ddd;padding:4px"><code>&lt;input type="url"&gt;</code></td></tr>
+          <tr><td style="border:1px solid #ddd;padding:4px">search</td><td style="border:1px solid #ddd;padding:4px"><input type="search" name="t12" placeholder="Search..."></td><td style="border:1px solid #ddd;padding:4px"><code>&lt;input type="search"&gt;</code></td></tr>
+          <tr><td style="border:1px solid #ddd;padding:4px">range</td><td style="border:1px solid #ddd;padding:4px"><input type="range" name="t13" min="0" max="100"></td><td style="border:1px solid #ddd;padding:4px"><code>&lt;input type="range"&gt;</code></td></tr>
+          <tr><td style="border:1px solid #ddd;padding:4px">color</td><td style="border:1px solid #ddd;padding:4px"><input type="color" name="t14" value="#3366cc"></td><td style="border:1px solid #ddd;padding:4px"><code>&lt;input type="color"&gt;</code></td></tr>
+          <tr><td style="border:1px solid #ddd;padding:4px">checkbox</td><td style="border:1px solid #ddd;padding:4px"><input type="checkbox" name="t15" checked> Agree</td><td style="border:1px solid #ddd;padding:4px"><code>&lt;input type="checkbox"&gt;</code></td></tr>
+          <tr><td style="border:1px solid #ddd;padding:4px">radio</td><td style="border:1px solid #ddd;padding:4px"><input type="radio" name="t16" value="a"> A <input type="radio" name="t16" value="b"> B</td><td style="border:1px solid #ddd;padding:4px"><code>&lt;input type="radio"&gt;</code></td></tr>
+          <tr><td style="border:1px solid #ddd;padding:4px">file</td><td style="border:1px solid #ddd;padding:4px"><input type="file" name="t17"></td><td style="border:1px solid #ddd;padding:4px"><code>&lt;input type="file"&gt;</code></td></tr>
+          <tr><td style="border:1px solid #ddd;padding:4px">button</td><td style="border:1px solid #ddd;padding:4px"><input type="button" value="Click Me"></td><td style="border:1px solid #ddd;padding:4px"><code>&lt;input type="button"&gt;</code></td></tr>
+          <tr><td style="border:1px solid #ddd;padding:4px">submit</td><td style="border:1px solid #ddd;padding:4px"><input type="submit" value="Submit"></td><td style="border:1px solid #ddd;padding:4px"><code>&lt;input type="submit"&gt;</code></td></tr>
+          <tr><td style="border:1px solid #ddd;padding:4px">reset</td><td style="border:1px solid #ddd;padding:4px"><input type="reset" value="Reset"></td><td style="border:1px solid #ddd;padding:4px"><code>&lt;input type="reset"&gt;</code></td></tr>
+          <tr><td style="border:1px solid #ddd;padding:4px">hidden</td><td style="border:1px solid #ddd;padding:4px"><input type="hidden" name="t21" value="secret"> <em>(not visible)</em></td><td style="border:1px solid #ddd;padding:4px"><code>&lt;input type="hidden"&gt;</code></td></tr>
+        </tbody>
+      </table>
+    </form>
+
+    <!-- ===== 3. TEXTAREA ===== -->
+    <h2 id="textarea-sec">3. Textarea</h2>
+    <p>The <code>&lt;textarea&gt;</code> tag defines a multi-line text input control. The size can be set by <b>rows</b> and <b>cols</b> attributes.</p>
+    <div class="code-example">&lt;textarea rows="4" cols="50"&gt;&lt;/textarea&gt;</div>
+    <p><b>Live example:</b></p>
+    <textarea rows="4" cols="50" placeholder="Write your course review here..."></textarea>
+
+    <!-- ===== 4. SELECT & OPTION ===== -->
+    <h2 id="select-sec">4. Select &amp; Option</h2>
+    <p>The <code>&lt;select&gt;</code> element creates a drop-down list. <code>&lt;option&gt;</code> tags define available choices.</p>
+    <div class="code-example">&lt;select&gt;
+  &lt;option value="volvo"&gt;Volvo&lt;/option&gt;
+  &lt;option value="saab"&gt;Saab&lt;/option&gt;
+&lt;/select&gt;</div>
+    <p><b>Live example — Choose a department:</b></p>
+    <select>
+      <option value="cs">Computer Science</option>
+      <option value="math">Mathematics</option>
+      <option value="eng">Engineering</option>
+      <option value="arts">Liberal Arts</option>
+    </select>
+
+    <!-- ===== 5. FIELDSET & LEGEND ===== -->
+    <h2 id="fieldset-sec">5. Fieldset &amp; Legend</h2>
+    <p>The <code>&lt;fieldset&gt;</code> tag groups related elements and draws a box. <code>&lt;legend&gt;</code> provides a caption.</p>
+    <div class="code-example">&lt;fieldset&gt;
+  &lt;legend&gt;Personalia:&lt;/legend&gt;
+  Name: &lt;input type="text"&gt;
+  Email: &lt;input type="text"&gt;
+&lt;/fieldset&gt;</div>
+    <form>
+      <fieldset>
+        <legend>Instructor Details:</legend>
+        <p><label for="iname">Name:</label> <input type="text" id="iname"></p>
+        <p><label for="iemail">Email:</label> <input type="text" id="iemail"></p>
+        <p><label for="idob">Date of Birth:</label> <input type="text" id="idob"></p>
+      </fieldset>
+    </form>
+
+    <!-- ===== 6. MEDIA ELEMENTS ===== -->
+    <h2 id="media-sec">6. Media Elements</h2>
+
+    <h3>6.1 Audio</h3>
+    <p>The <code>&lt;audio&gt;</code> element is used for embedding sound content.</p>
+    <div class="code-example">&lt;audio controls&gt;
+  &lt;source src="1.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;</div>
+    <div class="media-box">
+      <p><b>Sample Audio Player</b></p>
+      <audio controls>
+        <source src="1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <h3>6.2 Video</h3>
+    <p>The <code>&lt;video&gt;</code> element embeds video content.</p>
+    <div class="code-example">&lt;video controls&gt;
+  &lt;source src="1.mp4" type="video/mp4"&gt;
+&lt;/video&gt;</div>
+    <div class="media-box">
+      <p><b>Sample Video Player</b></p>
+      <video controls width="400">
+        <source src="1.mp4" type="video/mp4">
+        Your browser does not support the video element.
+      </video>
+    </div>
+
+    <h3>6.3 Embed</h3>
+    <p>The <code>&lt;embed&gt;</code> tag defines a container for external applications or plug-ins.</p>
+    <div class="code-example">&lt;embed src="1.swf"&gt;</div>
+    <div class="media-box">
+      <p><b>Embedded Content</b></p>
+      <embed src="1.swf" width="300" height="200">
+    </div>
+
+    <hr style="margin-top:24px">
+    <p style="font-size:.85rem; color:#54595d"><i>This article is part of the EduWiki Web Technology course series. See also: <a href="ex-1.html">Ex-1: HTML Basics</a>.</i></p>
+  </main>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <p>&copy; 2026 EduWiki — Educational Course Portal. Content is available under the Creative Commons License.</p>
+  <p>Privacy Policy &bull; Terms of Use &bull; Contact Us</p>
+</footer>
+
+</body>
+</html>
