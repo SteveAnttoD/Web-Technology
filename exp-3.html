@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Course Portal - About Us</title>
+
+    <style>
+        /* 
+           Experiment 3: HTML5 + CSS3 Responsive Webpage
+           Topics covered: Margin, padding, fonts, text, background, links, display, lists, width/height
+        */
+
+        /* =========================================
+           1. Global Styles (Fonts, Margin, Padding)
+           ========================================= */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* Fonts */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            
+            /* Background */
+            background-color: #f9fbfd;
+        }
+
+        /* =========================================
+           2. Navigation (Lists, Display, Links, Background)
+           ========================================= */
+        nav {
+            background-color: #034078;
+            padding: 15px 5%;
+            /* Display & Width */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            /* Text styling */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Lists */
+        .nav-links {
+            list-style-type: none; /* Removing default bullet points */
+        }
+
+        .nav-links li {
+            /* Display */
+            display: inline-block; /* Horizontal list */
+            margin-left: 30px;
+        }
+
+        /* Links */
+        .nav-links a {
+            color: #e0f2fe;
+            text-decoration: none; /* Removing underline */
+            font-weight: 600;
+            padding: 8px 12px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+            background-color: #001f3f;
+            border-radius: 4px;
+        }
+
+        /* =========================================
+           3. Hero Section (Height, Background, Text)
+           ========================================= */
+        .hero {
+            /* Width/Height */
+            width: 100%;
+            height: 60vh; /* Viewport height */
+            
+            /* Background (Linear Gradient) */
+            background: linear-gradient(135deg, rgba(3, 64, 120, 0.9), rgba(0, 119, 182, 0.7)),
+                        url('https://images.unsplash.com/photo-1519389950473-47ba0277781c') center/cover no-repeat;
+            
+            /* Display */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
+            /* Text */
+            text-align: center;
+            color: #ffffff;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            /* Text shadow for readability */
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        /* Call to Action Button */
+        .cta-btn {
+            display: inline-block;
+            background-color: #ff9800;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            /* Margin */
+            margin-top: 10px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .cta-btn:hover {
+            background-color: #f57c00;
+            transform: translateY(-3px);
+        }
+
+        /* =========================================
+           4. Main Content (Width, Margin, Padding)
+           ========================================= */
+        .container {
+            /* Width & centering */
+            width: 90%;
+            max-width: 1200px;
+            margin: 60px auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #034078;
+            margin-bottom: 40px;
+            /* Text underline alternative */
+            position: relative;
+        }
+
+        /* Feature Grid (Display) */
+        .features {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            /* Width distribution */
+            width: 31%;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-card h3 {
+            color: #0077b6;
+            margin: 15px 0;
+            font-size: 1.4rem;
+        }
+
+        /* =========================================
+           5. Responsive Design (Media Queries)
+           ========================================= */
+        
+        /* Tablet view */
+        @media (max-width: 992px) {
+            .features {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .feature-card {
+                width: 45%;
+            }
+        }
+
+        /* Mobile view */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 15px;
+            }
+            .nav-links {
+                margin-top: 20px;
+            }
+            .nav-links li {
+                display: block;
+                margin: 10px 0;
+                text-align: center;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .feature-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Header -->
+    <nav>
+        <div class="logo">EduPortal</div>
+        <ul class="nav-links">
+            <li><a href="exp-1.html">Courses</a></li>
+            <li><a href="enrollment-form.html">Enroll</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Banner -->
+    <header class="hero">
+        <h1>Empowering Your Future</h1>
+        <p>Join thousands of learners on our Educational Course Portal. Discover modern web technologies, data science, and responsive design.</p>
+        <a href="exp-1.html" class="cta-btn">Explore Course Catalog</a>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="container">
+        <h2 class="section-title">Why Choose Us?</h2>
+        
+        <div class="features">
+            <!-- Card 1 -->
+            <div class="feature-card">
+                <h3>Expert Instructors</h3>
+                <p>Learn directly from industry professionals who bring real-world experience and hands-on expertise into every lesson.</p>
+            </div>
+            
+            <!-- Card 2 -->
+            <div class="feature-card">
+                <h3>Flexible Learning</h3>
+                <p>Access your courses 24/7. Study at your own pace with our comprehensive online materials and video tutorials.</p>
+            </div>
+            
+            <!-- Card 3 -->
+            <div class="feature-card">
+                <h3>Verified Certificates</h3>
+                <p>Earn certificates upon completion to showcase your new skills to employers and enhance your career profile.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 30px; background-color: #034078; color: white; margin-top: 40px;">
+        <p>2026-2027 (URK24CS9005) - Web Technology Lab Batch-5</p>
+    </footer>
+
+</body>
+</html>

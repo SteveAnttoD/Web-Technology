@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Enrollment Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f7ff;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        h1 {
+            text-align: center;
+            color: #034078;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #666;
+        }
+        fieldset {
+            margin-bottom: 30px;
+            padding: 25px;
+            border: 1px solid #dae8ff;
+            border-radius: 8px;
+        }
+        legend {
+            font-weight: bold;
+            color: #034078;
+            padding: 0 10px;
+            font-size: 1.1em;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: inline-block;
+            width: 180px;
+            font-weight: bold;
+            vertical-align: top;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="tel"],
+        input[type="password"],
+        input[type="url"],
+        select,
+        textarea {
+            width: calc(100% - 200px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            max-width: 400px;
+            box-sizing: border-box;
+        }
+        .radio-group, .checkbox-group {
+            display: inline-block;
+            width: calc(100% - 200px);
+        }
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        .radio-group label, .checkbox-group label {
+            width: auto;
+            font-weight: normal;
+            margin-right: 15px;
+        }
+        .buttons {
+            text-align: center;
+            margin-top: 30px;
+        }
+        input[type="submit"],
+        input[type="reset"] {
+            padding: 12px 25px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            background-color: #034078;
+            color: white;
+        }
+        input[type="submit"]:hover {
+            background-color: #022a52;
+        }
+        input[type="reset"] {
+            background-color: #e0e0e0;
+            color: #333;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #034078;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="exp-1.html" class="back-link">&larr; Back to Courses</a>
+    
+    <h1>Enrollment Form</h1>
+    <p class="subtitle">Secure your spot in our upcoming classes.</p>
+
+    <form action="/action_page.php" method="get">
+
+        <fieldset>
+            <legend>Personal Information</legend>
+            <div class="form-group">
+                <label for="fname">First Name:</label>
+                <input type="text" id="fname" name="fname" placeholder="John" required maxlength="50">
+            </div>
+            <div class="form-group">
+                <label for="lname">Last Name:</label>
+                <input type="text" id="lname" name="lname" placeholder="Doe" required maxlength="50">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required max="2010-01-01">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" maxlength="10" minlength="10" title="Please enter exactly 10 digits">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" id="pwd" name="pwd" required minlength="8">
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Course Preferences</legend>
+            <div class="form-group">
+                <label for="course">Select Course:</label>
+                <select id="course" name="course" required>
+                    <option value="" disabled selected>Select a course...</option>
+                    <option value="webdev">Intro to Web Development</option>
+                    <option value="datasci">Data Fundamentals</option>
+                    <option value="ux">UX Design Basics</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Mode:</label>
+                <div class="radio-group">
+                    <input type="radio" id="online" name="mode" value="online" checked required>
+                    <label for="online">Online</label>
+                    <input type="radio" id="campus" name="mode" value="campus" required>
+                    <label for="campus">On-Campus</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Interests:</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="cert" name="cert" value="certificate">
+                    <label for="cert">Certificate</label>
+                    <input type="checkbox" id="mentor" name="mentor" value="mentorship">
+                    <label for="mentor">Mentorship</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="experience">Experience (Years):</label>
+                <input type="range" id="experience" name="experience" min="1" max="10" value="5" style="width: auto; vertical-align: middle;">
+            </div>
+            <div class="form-group">
+                <label for="bio">About You:</label>
+                <textarea id="bio" name="bio" rows="4" placeholder="Tell us about yourself..." maxlength="500"></textarea>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Documents</legend>
+            <div class="form-group">
+                <label for="resume">Upload Resume:</label>
+                <input type="file" id="resume" name="resume" required accept=".pdf,.doc,.docx" style="border: none; padding: 0;">
+            </div>
+            <div class="form-group">
+                <label for="website">Website:</label>
+                <input type="url" id="website" name="website" placeholder="https://" required>
+            </div>
+        </fieldset>
+
+        <div class="buttons">
+            <input type="submit" value="Submit Enrollment">
+            <input type="reset" value="Clear Form">
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>

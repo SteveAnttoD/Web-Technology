@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Course Portal - Sign In</title>
+    <style>
+        /* Experiment 4: CSS Authentication Page (Sign-In) */
+        /* Topics: Navbar, dropdown, hover, Flexbox, Sign-In, background, box-shadow */
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f7ff, #dae8ff);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #034078;
+            padding: 15px 40px;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            display: block;
+            transition: background 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: #001f3f;
+            border-radius: 4px;
+        }
+
+        /* Dropdown */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #ffffff;
+            min-width: 180px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        .dropdown-menu li {
+            list-style: none;
+        }
+
+        .dropdown-menu a {
+            color: #333;
+            padding: 12px 16px;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f1f1f1;
+            color: #034078;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Flexbox Authentication Area */
+        .auth-container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .auth-box {
+            background-color: white;
+            display: flex;
+            max-width: 900px;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .welcome-panel {
+            background: linear-gradient(135deg, #034078, #0077b6);
+            color: white;
+            padding: 50px;
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .welcome-panel h2 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .welcome-panel p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: #e0f2fe;
+        }
+
+        .form-panel {
+            width: 55%;
+            padding: 60px 50px;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .form-header h2 {
+            color: #034078;
+            margin-bottom: 10px;
+            font-size: 1.8em;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #4a5568;
+            font-weight: 600;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            font-size: 1em;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #034078;
+            box-shadow: 0 0 0 3px rgba(3, 64, 120, 0.2);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #034078;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            background-color: #001f3f;
+            transform: translateY(-2px);
+        }
+
+        .toggle-link {
+            text-align: center;
+            margin-top: 25px;
+            display: block;
+            color: #2b6cb0;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .toggle-link:hover {
+            color: #034078;
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #034078;
+            color: white;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .auth-box {
+                flex-direction: column;
+            }
+            .welcome-panel, .form-panel {
+                width: 100%;
+            }
+            .welcome-panel {
+                padding: 40px 20px;
+            }
+            .navbar {
+                flex-direction: column;
+            }
+            .nav-links {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">EduPortal</div>
+        <ul class="nav-links">
+            <li><a href="exp-1.html">Home</a></li>
+            <li class="dropdown">
+                <a href="#">Courses &#9662;</a>
+                <ul class="dropdown-menu">
+                    <li><a href="exp-1.html#course-details-edu101">Web Development</a></li>
+                    <li><a href="exp-1.html#course-details-edu201">Data Science</a></li>
+                    <li><a href="exp-1.html#course-details-edu301">UX Design</a></li>
+                </ul>
+            </li>
+            <li><a href="exp-3.html">About</a></li>
+        </ul>
+    </nav>
+
+    <div class="auth-container">
+        <div class="auth-box">
+            
+            <div class="welcome-panel">
+                <h2>Welcome Back!</h2>
+                <p>Sign in to access your enrolled courses, submit assignments, and interact with your mentors.</p>
+                <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f" alt="Education Login" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); margin-top: 10px;">
+            </div>
+
+            <div class="form-panel">
+                <div class="form-header">
+                    <h2>Sign-In to Account</h2>
+                    <p>Enter your details below to continue.</p>
+                </div>
+                
+                <form action="#">
+                    <div class="input-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required placeholder="you@example.com">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required placeholder="Enter your password">
+                    </div>
+                    
+                    <button type="submit" class="btn">Sign In</button>
+                    
+                    <!-- Link points to the newly created sign up page -->
+                    <a href="exp-4(1).html" class="toggle-link">Don't have an account? Sign-Up Here</a>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+
+    <footer>
+        <p>2026-2027 (URK24CS9005) - Web Technology Lab Batch-5</p>
+    </footer>
+
+</body>
+</html>
