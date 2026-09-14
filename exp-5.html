@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>JavaScript DOM & Events</title>
+
+
+ 
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+
+<!-- Main Header -->
+<header>
+<h1>JavaScript DOM & Events</h1>
+<p>Interactive JavaScript Programs</p>
+</header>
+
+
+<!-- Main Content -->
+<main>
+
+
+<!-- Question 1 -->
+<section class="card">
+<h2>1. Shortest & Longest Word</h2>
+<p>Enter a sentence to find the shortest and longest word.</p>
+
+
+<input type="text" id="sentence" placeholder="Enter a sentence">
+
+<button onclick="findWords()">Find Words</button>
+
+
+<p id="wordResult"></p>
+</section>
+
+
+
+ 
+
+<!-- Question 2: BMI Calculator -->
+<section class="card">
+<h2>2. BMI Calculator</h2>
+<p>Enter your weight and height to calculate your BMI.</p>
+
+
+<label for="weight">Weight (kg)</label>
+<input type="number" id="weight" placeholder="Enter weight">
+
+
+<label for="height">Height (m)</label>
+<input type="number" id="height" placeholder="Enter height">
+
+
+<button onclick="calculateBMI()">Calculate BMI</button>
+
+
+<p class="result">
+Your BMI is: <span id="score"></span><br> Your body type is: <span id="type"></span>
+</p>
+</section>
+
+
+<!-- Question 3: Fruit Farm -->
+<section class="card">
+<h2>3. Fruit Farm</h2>
+<p>Enter the rows and columns to create your fruit garden.</p>
+
+
+<label for="rows">Rows</label>
+<input type="number" id="rows" placeholder="Enter number of rows" min="1">
+
+
+
+ 
+
+<label for="columns">Columns</label>
+<input type="number" id="columns" placeholder="Enter number of columns" min="1">
+
+
+<button onclick="grow()">Plant Garden</button>
+
+
+<div id="garden"></div>
+</section>
+
+
+<!-- Question 4: Currency Converter -->
+<section class="card">
+<h2>4. Currency Converter</h2>
+<p>Convert between Indian Rupees and US Dollars.</p>
+
+
+<label for="data">Enter Amount</label>
+<input type="number" id="data" placeholder="Enter amount">
+
+
+<label for="from">From</label>
+<select id="from">
+<option value="INR">Indian Rupee</option>
+<option value="USD">US Dollar</option>
+</select>
+
+
+<label for="to">To</label>
+<select id="to">
+<option value="USD">US Dollar</option>
+<option value="INR">Indian Rupee</option>
+</select>
+
+ 
+
+
+
+<button onclick="convert()">Calculate</button>
+
+
+<p class="result">
+Result: <span id="answer"></span>
+</p>
+</section>
+
+
+<!-- Question 5: Coin Flip -->
+<section class="card coin-card">
+<h2>5. Coin Flip</h2>
+<p>Click the button to flip the coin.</p>
+
+
+<img src="heads.jpg" id="coin" alt="Coin">
+
+
+<br>
+
+
+<button id="flip">Flip!</button>
+
+
+<p class="result">
+Heads Total: <span id="num_heads">0</span><br> Tails Total: <span id="num_tails">0</span>
+</p>
+</section>
+
+
+<!-- Question 6: Birthday Cake Order -->
+<section class="card">
+
+ 
+
+<h2>6. Birthday Cake Order</h2>
+<p>Select the quantity of cakes and your preferred tip.</p>
+
+
+<label for="small">½ kg Cakes (₹100 each)</label>
+<input type="number" id="small" value="0" min="0">
+
+
+<label for="medium">1 kg Cakes (₹200 each)</label>
+<input type="number" id="medium" value="0" min="0">
+
+
+<label for="large">2 kg Cakes (₹400 each)</label>
+<input type="number" id="large" value="0" min="0">
+
+
+<p><strong>Tip:</strong></p>
+
+
+<label>
+<input type="radio" name="tip" value="10"> 10%
+</label>
+
+
+<label>
+<input type="radio" name="tip" value="15" checked> 15%
+</label>
+
+
+<label>
+<input type="radio" name="tip" value="20"> 20%
+
+ 
+
+</label>
+
+
+<br>
+
+
+<button id="submit">Calculate Order</button>
+
+
+<p class="result">
+Cost of order: ₹<span id="price"></span>
+</p>
+</section>
+
+
+<!-- Footer -->
+<footer>
+<p>JavaScript DOM & Events | Web Technology Lab</p>
+</footer>
+
+
+<script src="script.js"></script>
+
+
+</body>
+</html>
+
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: Arial, sans-serif;
+}
+
+ 
+
+
+
+body {
+background-color: #eef3f7; color: #263238;
+}
+
+
+/* Header */ header {
+background: linear-gradient(135deg, #102a43, #1f6f8b); color: white;
+text-align: center; padding: 35px 20px;
+}
+
+
+header h1 {
+font-size: 32px; margin-bottom: 8px; letter-spacing: 1px;
+}
+
+
+header p {
+font-size: 16px; color: #d8f3f7;
+}
+
+
+/* Main Content */ main {
+
+ 
+
+width: 90%;
+max-width: 1000px; margin: 30px auto;
+}
+
+
+/* Program Cards */
+.card {
+background-color: white; padding: 25px;
+margin-bottom: 25px; border-radius: 12px;
+border-left: 5px solid #1f8a9e;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+.card h2 {
+color: #145374; margin-bottom: 10px;
+}
+
+
+.card p {
+margin-bottom: 15px;
+}
+
+
+/* Input Fields */ input[type="text"], input[type="number"],
+ 
+
+input[type="email"], input[type="password"], select {
+width: 100%; padding: 12px; margin: 8px 0 15px;
+border: 1px solid #c5d3da; border-radius: 6px;
+font-size: 15px; background-color: #fafcfd;
+}
+
+
+input:focus, select:focus {
+outline: none;
+border-color: #1f8a9e;
+box-shadow: 0 0 5px rgba(31, 138, 158, 0.2);
+}
+
+
+/* Buttons */ button {
+background-color: #1f8a9e; color: white;
+border: none; padding: 11px 20px; border-radius: 6px; cursor: pointer;
+
+ 
+
+font-size: 15px; font-weight: bold; transition: 0.3s;
+}
+
+
+button:hover {
+background-color: #145374; transform: translateY(-2px);
+}
+
+
+/* Results */ #wordResult,
+.result {
+margin-top: 15px; padding: 12px;
+background-color: #e6f5f7; border-radius: 6px;
+color: #145374; font-weight: bold;
+}
+
+
+/* Fruit Garden */ #garden {
+margin-top: 20px; text-align: center;
+}
+
+
+
+ 
+
+#garden img { margin: 5px; border-radius: 8px; object-fit: cover;
+box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Coin Flip */
+.coin-card {
+text-align: center;
+}
+
+
+#coin {
+width: 120px; height: 120px; object-fit: cover; margin: 15px; border-radius: 50%;
+}
+
+
+/* Radio Buttons */
+.card label {
+margin-right: 15px;
+}
+
+
+.card input[type="radio"] { width: auto;
+
+ 
+
+margin-right: 5px;
+}
+
+
+/* Footer */ footer {
+text-align: center; background-color: #102a43; color: #d8f3f7;
+padding: 18px; margin-top: 40px;
+}
+
+
+footer p {
+font-size: 14px;
+}
+
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+
+
+main {
+width: 95%;
+}
+
+
+header h1 {
+font-size: 26px;
+}
+
+
+
+ 
+
+.card {
+padding: 20px;
+}
+}
+JavaScript :
+// Question 1: Find Shortest and Longest Word
+
+
+function findWords() {
+
+
+// Get the sentence from the input box
+var sentence = document.getElementById("sentence").value;
+
+
+// Split the sentence into an array of words var words = sentence.split(" ");
+
+// Assume the first word is both shortest and longest var shortest = words[0];
+var longest = words[0];
+
+
+// Compare each word
+for (var i = 1; i < words.length; i++) {
+
+
+if (words[i].length < shortest.length) { shortest = words[i];
+}
+
+
+if (words[i].length > longest.length) {
+
+ 
+
+longest = words[i];
+}
+}
+
+
+// Display the result document.getElementById("wordResult").innerHTML =
+"Shortest: " + shortest + "<br>" + "Longest: " + longest;
+}
+// Question 2: BMI Calculator
+
+
+function calculateBMI() {
+
+
+// Get values from input boxes
+var weight = parseFloat(document.getElementById("weight").value); var height = parseFloat(document.getElementById("height").value);
+
+// Calculate BMI
+var bmi = weight / (height * height);
+
+
+// Determine body type var bodyType;
+
+if (bmi < 18) {
+bodyType = "Underweight";
+}
+else if (bmi <= 25) {
+
+ 
+
+bodyType = "Normal";
+}
+else if (bmi <= 30) { bodyType = "Overweight";
+}
+else {
+bodyType = "Obese";
+}
+
+
+// Display results
+document.getElementById("score").innerHTML = bmi.toFixed(2); document.getElementById("type").innerHTML = bodyType;
+}
+// Question 3: Fruit Farm
+
+
+function grow() {
+
+
+// Get rows and columns
+var rows = parseInt(document.getElementById("rows").value);
+var columns = parseInt(document.getElementById("columns").value);
+
+
+// Fruit images
+var fruits = ["Orange.jpg", "Apple.jpg"];
+
+
+// Clear previous garden document.getElementById("garden").innerHTML = "";
+
+
+ 
+
+// Create the fruit grid
+for (var i = 0; i < rows; i++) {
+
+
+for (var j = 0; j < columns; j++) {
+
+
+// Generate random number
+var number = Math.floor(Math.random() * 2);
+
+
+// Select fruit
+var image = fruits[number];
+
+
+// Add image to garden document.getElementById("garden").innerHTML +=
+"<img src='" + image + "' width='100' height='100'>";
+}
+
+
+// Move to next row document.getElementById("garden").innerHTML += "<br>";
+}
+}
+// Question 4: Currency Converter
+
+
+function convert() {
+
+
+// Get input value
+var amount = parseFloat(document.getElementById("data").value);
+
+
+
+ 
+
+// Get selected currencies
+var from = document.getElementById("from").value; var to = document.getElementById("to").value;
+
+var result;
+
+
+// Rupees to Dollars
+if (from == "INR" && to == "USD") { result = amount * 0.015;
+}
+
+
+// Dollars to Rupees
+else if (from == "USD" && to == "INR") { result = amount * 67.12;
+}
+
+
+// Same currency else {
+result = amount;
+}
+
+
+// Display result document.getElementById("answer").innerHTML =
+result.toFixed(2) + " " + to;
+}
+// Question 5: Coin Flip
+
+
+
+ 
+
+var heads = 0; var tails = 0;
+
+// Attach click event to Flip button document.getElementById("flip").addEventListener("click", flipFunction);
+
+function flipFunction() {
+
+
+// Generate random number: 0 or 1
+var random = Math.floor(Math.random() * 2);
+
+
+if (random == 0) {
+
+
+// Heads
+document.getElementById("coin").src = "heads.jpg"; heads++;
+
+} else {
+
+
+// Tails
+document.getElementById("coin").src = "tails.jpg"; tails++;
+}
+
+
+// Display totals document.getElementById("num_heads").innerHTML = heads; document.getElementById("num_tails").innerHTML = tails;
+ 
+
+}
+// Question 6: Birthday Cake Order
+
+
+document.getElementById("submit").addEventListener("click", calculateOrder);
+
+
+function calculateOrder() {
+
+
+// Get cake quantities
+var small = parseInt(document.getElementById("small").value);
+var medium = parseInt(document.getElementById("medium").value); var large = parseInt(document.getElementById("large").value);
+
+// Calculate cake cost
+var cakeCost = (small * 100) + (medium * 200) + (large * 400);
+
+
+// Add 9% tax
+var tax = cakeCost * 0.09;
+var totalAfterTax = cakeCost + tax;
+
+
+// Get selected tip
+var tipPercent = parseInt( document.querySelector('input[name="tip"]:checked').value
+);
+
+
+// Calculate tip
+var tip = totalAfterTax * (tipPercent / 100);
+
+
+
+ 
+
+// Final cost
+var total = totalAfterTax + tip;
+
+
+// Display result
+document.getElementById("price").innerHTML = total.toFixed(2);
+}
