@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>JavaScript DOM & Events</title>
+
+
+ 
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+
+<!-- Main Header -->
+<header>
+<h1>JavaScript DOM & Events</h1>
+<p>Interactive JavaScript Programs</p>
+</header>
+
+
+<!-- Main Content -->
+<main>
+
+
+<!-- Question 1 -->
+<section class="card">
+<h2>1. Shortest & Longest Word</h2>
+<p>Enter a sentence to find the shortest and longest word.</p>
+
+
+<input type="text" id="sentence" placeholder="Enter a sentence">
+
+<button onclick="findWords()">Find Words</button>
+
+
+<p id="wordResult"></p>
+</section>
+
+
+
+ 
+
+<!-- Question 2: BMI Calculator -->
+<section class="card">
+<h2>2. BMI Calculator</h2>
+<p>Enter your weight and height to calculate your BMI.</p>
+
+
+<label for="weight">Weight (kg)</label>
+<input type="number" id="weight" placeholder="Enter weight">
+
+
+<label for="height">Height (m)</label>
+<input type="number" id="height" placeholder="Enter height">
+
+
+<button onclick="calculateBMI()">Calculate BMI</button>
+
+
+<p class="result">
+Your BMI is: <span id="score"></span><br> Your body type is: <span id="type"></span>
+</p>
+</section>
+
+
+<!-- Question 3: Fruit Farm -->
+<section class="card">
+<h2>3. Fruit Farm</h2>
+<p>Enter the rows and columns to create your fruit garden.</p>
+
+
+<label for="rows">Rows</label>
+<input type="number" id="rows" placeholder="Enter number of rows" min="1">
+
+
+
+ 
+
+<label for="columns">Columns</label>
+<input type="number" id="columns" placeholder="Enter number of columns" min="1">
+
+
+<button onclick="grow()">Plant Garden</button>
+
+
+<div id="garden"></div>
+</section>
+
+
+<!-- Question 4: Currency Converter -->
+<section class="card">
+<h2>4. Currency Converter</h2>
+<p>Convert between Indian Rupees and US Dollars.</p>
+
+
+<label for="data">Enter Amount</label>
+<input type="number" id="data" placeholder="Enter amount">
+
+
+<label for="from">From</label>
+<select id="from">
+<option value="INR">Indian Rupee</option>
+<option value="USD">US Dollar</option>
+</select>
+
+
+<label for="to">To</label>
+<select id="to">
+<option value="USD">US Dollar</option>
+<option value="INR">Indian Rupee</option>
+</select>
+
+ 
+
+
+
+<button onclick="convert()">Calculate</button>
+
+
+<p class="result">
+Result: <span id="answer"></span>
+</p>
+</section>
+
+
+<!-- Question 5: Coin Flip -->
+<section class="card coin-card">
+<h2>5. Coin Flip</h2>
+<p>Click the button to flip the coin.</p>
+
+
+<img src="heads.jpg" id="coin" alt="Coin">
+
+
+<br>
+
+
+<button id="flip">Flip!</button>
+
+
+<p class="result">
+Heads Total: <span id="num_heads">0</span><br> Tails Total: <span id="num_tails">0</span>
+</p>
+</section>
+
+
+<!-- Question 6: Birthday Cake Order -->
+<section class="card">
+
+ 
+
+<h2>6. Birthday Cake Order</h2>
+<p>Select the quantity of cakes and your preferred tip.</p>
+
+
+<label for="small">½ kg Cakes (₹100 each)</label>
+<input type="number" id="small" value="0" min="0">
+
+
+<label for="medium">1 kg Cakes (₹200 each)</label>
+<input type="number" id="medium" value="0" min="0">
+
+
+<label for="large">2 kg Cakes (₹400 each)</label>
+<input type="number" id="large" value="0" min="0">
+
+
+<p><strong>Tip:</strong></p>
+
+
+<label>
+<input type="radio" name="tip" value="10"> 10%
+</label>
+
+
+<label>
+<input type="radio" name="tip" value="15" checked> 15%
+</label>
+
+
+<label>
+<input type="radio" name="tip" value="20"> 20%
+
+ 
+
+</label>
+
+
+<br>
+
+
+<button id="submit">Calculate Order</button>
+
+
+<p class="result">
+Cost of order: ₹<span id="price"></span>
+</p>
+</section>
+
+
+<!-- Footer -->
+<footer>
+<p>JavaScript DOM & Events | Web Technology Lab</p>
+</footer>
+
+
+<script src="script.js"></script>
+
+
+</body>
+</html>
+
+
+
