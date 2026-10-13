@@ -1,0 +1,170 @@
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: Arial, sans-serif;
+}
+
+ 
+
+
+
+body {
+background-color: #eef3f7; color: #263238;
+}
+
+
+/* Header */ header {
+background: linear-gradient(135deg, #102a43, #1f6f8b); color: white;
+text-align: center; padding: 35px 20px;
+}
+
+
+header h1 {
+font-size: 32px; margin-bottom: 8px; letter-spacing: 1px;
+}
+
+
+header p {
+font-size: 16px; color: #d8f3f7;
+}
+
+
+/* Main Content */ main {
+
+ 
+
+width: 90%;
+max-width: 1000px; margin: 30px auto;
+}
+
+
+/* Program Cards */
+.card {
+background-color: white; padding: 25px;
+margin-bottom: 25px; border-radius: 12px;
+border-left: 5px solid #1f8a9e;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+.card h2 {
+color: #145374; margin-bottom: 10px;
+}
+
+
+.card p {
+margin-bottom: 15px;
+}
+
+
+/* Input Fields */ input[type="text"], input[type="number"],
+ 
+
+input[type="email"], input[type="password"], select {
+width: 100%; padding: 12px; margin: 8px 0 15px;
+border: 1px solid #c5d3da; border-radius: 6px;
+font-size: 15px; background-color: #fafcfd;
+}
+
+
+input:focus, select:focus {
+outline: none;
+border-color: #1f8a9e;
+box-shadow: 0 0 5px rgba(31, 138, 158, 0.2);
+}
+
+
+/* Buttons */ button {
+background-color: #1f8a9e; color: white;
+border: none; padding: 11px 20px; border-radius: 6px; cursor: pointer;
+
+ 
+
+font-size: 15px; font-weight: bold; transition: 0.3s;
+}
+
+
+button:hover {
+background-color: #145374; transform: translateY(-2px);
+}
+
+
+/* Results */ #wordResult,
+.result {
+margin-top: 15px; padding: 12px;
+background-color: #e6f5f7; border-radius: 6px;
+color: #145374; font-weight: bold;
+}
+
+
+/* Fruit Garden */ #garden {
+margin-top: 20px; text-align: center;
+}
+
+
+
+ 
+
+#garden img { margin: 5px; border-radius: 8px; object-fit: cover;
+box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Coin Flip */
+.coin-card {
+text-align: center;
+}
+
+
+#coin {
+width: 120px; height: 120px; object-fit: cover; margin: 15px; border-radius: 50%;
+}
+
+
+/* Radio Buttons */
+.card label {
+margin-right: 15px;
+}
+
+
+.card input[type="radio"] { width: auto;
+
+ 
+
+margin-right: 5px;
+}
+
+
+/* Footer */ footer {
+text-align: center; background-color: #102a43; color: #d8f3f7;
+padding: 18px; margin-top: 40px;
+}
+
+
+footer p {
+font-size: 14px;
+}
+
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+
+
+main {
+width: 95%;
+}
+
+
+header h1 {
+font-size: 26px;
+}
+
+
+
+ 
+
+.card {
+padding: 20px;
+}
+}
